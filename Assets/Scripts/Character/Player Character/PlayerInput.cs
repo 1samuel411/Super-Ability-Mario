@@ -8,8 +8,8 @@ public class PlayerInput : CharacterInput
 
     void Update()
     {
-        _inputMap.x = Input.GetAxis("Horizontal");
-        _inputMap.space = Input.GetKeyDown(KeyCode.Space);
+        _inputMap.X = Input.GetAxis("Horizontal");
+        _inputMap.Space = Input.GetKey(KeyCode.Space);
     }
 
 }

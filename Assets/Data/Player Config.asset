@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a77313c66151be4399d4691db0ea0e1, type: 3}
   m_Name: Player Config
   m_EditorClassIdentifier: 
-  _moveSpeed: 1.2
-  _accelerationSpeed: 1
-  _jumpHeight: 0.6
-  _collisionOffset: {x: -0.005, y: 0.09}
-  _collisionSize: {x: 0.14, y: 0.16}
+  _moveSpeed: 1.25
+  _linearDrag: 0.25
+  _verticalDrag: 0.35
+  _jumpTimer: 0.05
+  _accelerationSpeed: 0.65
+  _jumpHeight: 0.4
+  _jumpBufferTime: 0.1
+  _coyoteJumpTime: 0.1
+  _maxJumps: 2
+  _collisionOffset: {x: 0, y: 0.0875}
+  _collisionSize: {x: 0.12, y: 0.175}

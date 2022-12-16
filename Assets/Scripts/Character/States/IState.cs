@@ -8,4 +8,6 @@ public interface IState
     void Enter(Character character);
 
     void Loop(Character character, float deltaTime);
+
+    void FixedLoop(Character character, float deltaTime);
 }

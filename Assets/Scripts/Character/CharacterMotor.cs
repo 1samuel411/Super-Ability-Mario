@@ -9,16 +9,31 @@ public class CharacterMotor : MonoBehaviour
     public Vector2 Velocity => _rigidbody2D.velocity;
 
     [SerializeField] private Rigidbody2D _rigidbody2D;
-    
-    internal void ApplyVelocity(Vector2 force, ForceMode2D forceMode = ForceMode2D.Force)
+
+    internal void ApplyForce(Vector2 force, ForceMode2D forceMode = ForceMode2D.Force)
     {
         if (force == Vector2.zero)
             return;
 
         _rigidbody2D.AddForce(force, forceMode);
-        if (Mathf.Abs(_rigidbody2D.velocity.x) > Mathf.Abs(force.x))
+    }
+
+    internal void ApplyHorizontalDrag(float drag)
+    {
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * Mathf.Clamp01(1 - drag), _rigidbody2D.velocity.y);
+    }
+
+    internal void ApplyVerticalDrag(float drag)
+    {
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _rigidbody2D.velocity.y * Mathf.Clamp01(1 - drag));
+    }
+
+    internal void LimitXVelocity(float maxVelocity)
+    {
+        if (Mathf.Abs(_rigidbody2D.velocity.x) > maxVelocity)
         {
-            _rigidbody2D.AddForce(new Vector2(-force.x, 0), forceMode);
+            _rigidbody2D.velocity = new Vector2(Mathf.Sign(_rigidbody2D.velocity.x) * maxVelocity, _rigidbody2D.velocity.y);
+            return;
         }
     }
 
@@ -27,7 +42,7 @@ public class CharacterMotor : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
     }
 
-    public float CalculateJumpSpeed(float jumpHeight)
+    public float CalculateJumpForce(float jumpHeight)
     {
         float gravity = _rigidbody2D.gravityScale * -Physics.gravity.y;
         return _rigidbody2D.mass * Mathf.Sqrt(2 * jumpHeight * gravity);
