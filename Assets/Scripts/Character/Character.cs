@@ -13,6 +13,7 @@ namespace SuperAbilityMario.Character
         public bool FacingRight => _facingRight;
         public float LastStateChangedTime => _lastStateChangedTime;
         public float LastGroundedTime => _lastGroundedTime;
+        public float LastJumpTime => _lastJumpTime;
         public int JumpCount => _jumpCount;
         protected virtual IState DefaultState => States.WalkState;
 
@@ -30,11 +31,12 @@ namespace SuperAbilityMario.Character
         [SerializeField] private float groundedCheckHeight;
 
         // Non-serialized Fields
-        private IState _currentState;
+        [SerializeReference] private IState _currentState;
         private bool _isGrounded;
         private bool _facingRight = true;
         private float _lastStateChangedTime;
         private float _lastGroundedTime;
+        private float _lastJumpTime;
         private int _jumpCount;
 
         protected virtual void Awake()
@@ -81,6 +83,7 @@ namespace SuperAbilityMario.Character
         public void IncrementJumpCount()
         {
             _jumpCount++;
+            _lastJumpTime = Time.time;
         }
 
         public void ResetJumpCount()

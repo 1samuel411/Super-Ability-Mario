@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 518530822}
   - component: {fileID: 518530821}
+  - component: {fileID: 518530823}
   m_Layer: 0
   m_Name: Level Grid
   m_TagString: Untagged
@@ -170,6 +171,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &518530823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518530820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d62b9b06518cc041be6b854a913346f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +272,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 0.865
+  orthographic size: 0.68666667
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -457,6 +470,7 @@ GameObject:
   - component: {fileID: 1532485113}
   - component: {fileID: 1532485112}
   - component: {fileID: 1532485114}
+  - component: {fileID: 1532485115}
   m_Layer: 0
   m_Name: Special Boxes
   m_TagString: Untagged
@@ -585,7 +599,7 @@ Tilemap:
       - {fileID: 1349848955, guid: ac56abb586adf8843b57b66af5a1bf7c, type: 3}
       - {fileID: 147203642, guid: ac56abb586adf8843b57b66af5a1bf7c, type: 3}
       - {fileID: -1040596848, guid: ac56abb586adf8843b57b66af5a1bf7c, type: 3}
-      m_AnimationSpeed: 6.1700006
+      m_AnimationSpeed: 6.17
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -657,6 +671,18 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &1532485115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532485110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d1f6b5e66e99842b0c85df10a2fb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1824163166
 GameObject:
   m_ObjectHideFlags: 0
@@ -3562,7 +3588,7 @@ Tilemap:
       - {fileID: 560019823, guid: 252655ae16eaae4438ad93cb18a5c384, type: 3}
       - {fileID: -1170892517, guid: 252655ae16eaae4438ad93cb18a5c384, type: 3}
       - {fileID: -203677965, guid: 252655ae16eaae4438ad93cb18a5c384, type: 3}
-      m_AnimationSpeed: 9.12
+      m_AnimationSpeed: 9.120001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 6, y: -3, z: 0}

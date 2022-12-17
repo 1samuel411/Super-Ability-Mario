@@ -7,7 +7,6 @@ public struct JumpState : IState
 {
     void IState.Enter(Character character)
     {
-        character.IncrementJumpCount();
     }
 
     void IState.Loop(Character character, float deltaTime)
@@ -20,11 +19,9 @@ public struct JumpState : IState
         {
             float jumpForce = character.CharacterMotor.CalculateJumpForce(characterConfig.JumpHeight);
 
+            character.IncrementJumpCount();
             character.CharacterMotor.ResetYVelocity();
             character.CharacterMotor.ApplyForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
-        if (Time.time >= character.LastStateChangedTime + characterConfig.JumpTimer + 0.1f)
-        {
             character.SetState(States.WalkState);
         }
     }

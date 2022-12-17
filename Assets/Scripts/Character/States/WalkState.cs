@@ -12,19 +12,26 @@ public struct WalkState : IState
     {
         InputMap inputMap = character.CharacterInput.InputMap;
         CharacterConfig characterConfig = character.CharacterConfig;
-        bool pressedSpace = Time.time - inputMap.LastPressedSpaceTime <= characterConfig.JumpBufferTime;
-        if (pressedSpace && character.IsGrounded)
+        
+        bool pressedSpace = Time.time - inputMap.LastPressedSpaceTime <= characterConfig.JumpBufferTime && Time.time > characterConfig.JumpBufferTime;
+        bool canJump = Time.time - character.LastJumpTime >= characterConfig.JumpBufferTime;
+        if (canJump && pressedSpace && character.IsGrounded)
         {
+            Debug.Log("Jumping from space");
+            character.ResetJumpCount();
             character.SetState(States.JumpState);
             return;
         }
-        if (Time.time - character.LastGroundedTime <= characterConfig.CoyoteJumpTime && pressedSpace)
+        if (Time.time - character.LastGroundedTime <= characterConfig.CoyoteJumpTime && canJump && pressedSpace)
         {
+            Debug.Log("Jumping from coyote jump");
+            character.ResetJumpCount();
             character.SetState(States.JumpState);
             return;
         }
-        if (character.JumpCount < characterConfig.MaxJumps && pressedSpace)
+        if (character.JumpCount < characterConfig.MaxJumps && pressedSpace && canJump)
         {
+            Debug.Log("Jumping from an extra jump we earned");
             character.SetState(States.JumpState);
             return;
         }
@@ -55,7 +62,6 @@ public struct WalkState : IState
             {
                 character.CharacterMotor.ApplyHorizontalDrag(characterConfig.LinearDrag);
             }
-            character.ResetJumpCount();
         }
         else
         {
