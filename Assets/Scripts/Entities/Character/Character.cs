@@ -6,7 +6,7 @@ namespace SuperAbilityMario.Character
     {
 
         // Properties
-        public CharacterMotor CharacterMotor => _characterMotor;
+        public EntityMotor EntityMotor => _entityMotor;
         public CharacterInput CharacterInput => _characterInput;
         public CharacterConfig CharacterConfig => _characterConfig;
         public bool IsGrounded => _isGrounded;
@@ -19,7 +19,7 @@ namespace SuperAbilityMario.Character
 
         // Fields
         [Header("Component References")]
-        [SerializeField] private CharacterMotor _characterMotor;
+        [SerializeField] private EntityMotor _entityMotor;
         [SerializeField] private CharacterInput _characterInput;
         [SerializeField] private CapsuleCollider2D _capsuleCollider2D;
 
@@ -104,7 +104,7 @@ namespace SuperAbilityMario.Character
 
         private bool CheckIfGrounded()
         {
-            RaycastHit2D raycastHit2D = Physics2D.BoxCast(GetGroundedBoxCastCenter(), GetGroundedBoxCastSize(), 0, Vector2.down, 0, _gameConfig.LayerMask);
+            RaycastHit2D raycastHit2D = Physics2D.BoxCast(GetGroundedBoxCastCenter(), GetGroundedBoxCastSize(), 0, Vector2.down, 0, _gameConfig.GroundedLayerMask);
             return raycastHit2D.collider != null;
         }
 

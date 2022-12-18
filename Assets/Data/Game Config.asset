@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb7561aa52cde14abd8fd5dc586cd0e, type: 3}
   m_Name: Game Config
   m_EditorClassIdentifier: 
-  _layerMask:
+  _groundedLayerMask:
     serializedVersion: 2
     m_Bits: 55
+  _interactionLayerMask:
+    serializedVersion: 2
+    m_Bits: 129

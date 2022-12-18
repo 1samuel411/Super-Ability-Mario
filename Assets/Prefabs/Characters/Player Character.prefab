@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1162042946}
   - component: {fileID: 1162042947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,11 +94,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6012129138796645484}
   - component: {fileID: 6012129138796645483}
-  - component: {fileID: 1833035270}
   - component: {fileID: 1833035271}
+  - component: {fileID: 908745249554241264}
   - component: {fileID: 1833035272}
   - component: {fileID: 1833035273}
-  m_Layer: 0
+  - component: {fileID: 1833035278}
+  m_Layer: 6
   m_Name: Player Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,41 +134,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Material: {fileID: 6200000, guid: 00eda5cfbe4024d4cad8937eb430c746, type: 2}
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &1833035270
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012129138796645480}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.005, y: 0.08}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.16}
-  m_EdgeRadius: 0
 --- !u!114 &1833035271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,9 +155,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9bcc70d7b3ca3468375358f7d70473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterMotor: {fileID: 1833035273}
+  _entityMotor: {fileID: 1833035273}
   _characterInput: {fileID: 1833035272}
-  _currentState: {fileID: 11400000, guid: 7a27f5be3642cbe418ce84dea1222a59, type: 2}
+  _capsuleCollider2D: {fileID: 1833035278}
+  _characterConfig: {fileID: 11400000, guid: dbf137b26e8124e4b953b95d0fad0d8d, type: 2}
+  _gameConfig: {fileID: 11400000, guid: 73d1aac5797ef1942855913081921269, type: 2}
+  groundedCheckOffset: 0
+  groundedCheckHeight: 0.03
+  _currentState:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &908745249554241264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012129138796645480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cf967cb74aa4b4a927cc934867de3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character: {fileID: 1833035271}
+  GameConfig: {fileID: 11400000, guid: 73d1aac5797ef1942855913081921269, type: 2}
+  LevelGrid: {fileID: 0}
+  debugContactPointSize: 0.1
 --- !u!114 &1833035272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,9 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d720525b0701da747bbde2c5f1b63bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputMap:
-    x: 0
-    space: 0
 --- !u!114 &1833035273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,3 +209,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edc91f0f5fcb7f4eb402a68dd18f253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 6012129138796645483}
+--- !u!70 &1833035278
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012129138796645480}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 00eda5cfbe4024d4cad8937eb430c746, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.0875}
+  m_Size: {x: 0.12, y: 0.175}
+  m_Direction: 0

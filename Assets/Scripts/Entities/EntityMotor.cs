@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMotor : MonoBehaviour
+public class EntityMotor : MonoBehaviour
 {
 
     public Vector2 Velocity => _rigidbody2D.velocity;
@@ -42,9 +42,25 @@ public class CharacterMotor : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, 0);
     }
 
+    public void ResetXVelocity()
+    {
+        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+    }
+
     public float CalculateJumpForce(float jumpHeight)
     {
         float gravity = _rigidbody2D.gravityScale * -Physics.gravity.y;
         return _rigidbody2D.mass * Mathf.Sqrt(2 * jumpHeight * gravity);
     }
+
+    public void DisableMotor()
+    {
+        _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+    }
+
+    public void EnableMotor()
+    {
+        _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+    }
+
 }

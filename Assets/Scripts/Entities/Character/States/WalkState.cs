@@ -45,30 +45,30 @@ public struct WalkState : IState
         Vector2 velocityTarget = new Vector2(inputMap.X * characterConfig.AccelerationSpeed, 0);
 
         // Apply base movement force and limit the X Velocity
-        character.CharacterMotor.ApplyForce(velocityTarget, ForceMode2D.Force);
-        character.CharacterMotor.LimitXVelocity(characterConfig.MoveSpeed);
+        character.EntityMotor.ApplyForce(velocityTarget, ForceMode2D.Force);
+        character.EntityMotor.LimitXVelocity(characterConfig.MoveSpeed);
 
         // Handle flipping character and checking if we're changing directions 
         if ((velocityTarget.x > 0 && !character.FacingRight) || (velocityTarget.x < 0 && character.FacingRight))
         {
             character.Flip();
         }
-        bool changingDirections = (velocityTarget.x > 0 && character.CharacterMotor.Velocity.x < 0) || (velocityTarget.x < 0 && character.CharacterMotor.Velocity.x > 0);
+        bool changingDirections = (velocityTarget.x > 0 && character.EntityMotor.Velocity.x < 0) || (velocityTarget.x < 0 && character.EntityMotor.Velocity.x > 0);
 
         if (character.IsGrounded)
         {
             // Apply different horizontal drags if we're grounded or changing directions
             if (Mathf.Abs(velocityTarget.x) < 0.4f || changingDirections)
             {
-                character.CharacterMotor.ApplyHorizontalDrag(characterConfig.LinearDrag);
+                character.EntityMotor.ApplyHorizontalDrag(characterConfig.LinearDrag);
             }
         }
         else
         {
             // When in the air and moving upwards, apply vertical drag if we're not holding space
-            if (character.CharacterMotor.Velocity.y > 0 && !inputMap.Space)
+            if (character.EntityMotor.Velocity.y > 0 && !inputMap.Space)
             {
-                character.CharacterMotor.ApplyVerticalDrag(characterConfig.VerticalDrag);
+                character.EntityMotor.ApplyVerticalDrag(characterConfig.VerticalDrag);
             }
         }
     }

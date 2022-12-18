@@ -17,11 +17,11 @@ public struct JumpState : IState
         CharacterConfig characterConfig = character.CharacterConfig;
         if (Time.time >= character.LastStateChangedTime + characterConfig.JumpTimer)
         {
-            float jumpForce = character.CharacterMotor.CalculateJumpForce(characterConfig.JumpHeight);
+            float jumpForce = character.EntityMotor.CalculateJumpForce(characterConfig.JumpHeight);
 
             character.IncrementJumpCount();
-            character.CharacterMotor.ResetYVelocity();
-            character.CharacterMotor.ApplyForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            character.EntityMotor.ResetYVelocity();
+            character.EntityMotor.ApplyForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             character.SetState(States.WalkState);
         }
     }
